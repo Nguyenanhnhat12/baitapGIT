@@ -136,11 +136,49 @@ async function deleteUser(req, res, id) {
     });
   }
 }
+/**
+ * PUT /api/users/:id
+ * Cập nhật thông tin user
+ */
+async function updateUser(req, res, id) {
+  try {
+    const body = await getRequestBody(req);
+    const users = await readJSONFile(usersFilePath);
+    const userIndex = users.findIndex((u) => u.id === parseInt(id));
 
+    if (userIndex === -1) {
+      sendJSON(res, 404, {
+        success: false,
+        message: `Khong tim thay user voi id = ${id}`,
+      });
+      return;
+    }
+
+    // Cap nhat thong tin user
+    if (body.name) users[userIndex].name = body.name;
+    if (body.email) users[userIndex].email = body.email;
+    if (body.phone) users[userIndex].phone = body.phone;
+
+    await writeJSONFile(usersFilePath, users);
+
+    sendJSON(res, 200, {
+      success: true,
+      message: 'Cap nhat user thanh cong',
+      data: users[userIndex],
+    });
+  } catch (err) {
+    sendJSON(res, 500, {
+      success: false,
+      message: 'Loi server khi cap nhat user',
+      error: err.message,
+    });
+  }
+}
 module.exports = {
   getAllUsers,
   getUserById,
   createUser,
   deleteUser,
+  updateUser,
 };
 
