@@ -48,6 +48,13 @@ function handleRoutes(req, res) {
   // ============ API Routes ============
 
   // GET /api/users - Lấy danh sách users
+  // GET /api/users/search?q=keyword - Tim kiem user
+  if (pathname === '/api/users/search' && method === 'GET') {
+    const query = parsedUrl.searchParams.get('q') || '';
+    userController.searchUsers(req, res, query);
+    return;
+  }
+
   if (pathname === '/api/users' && method === 'GET') {
     userController.getAllUsers(req, res);
     return;
