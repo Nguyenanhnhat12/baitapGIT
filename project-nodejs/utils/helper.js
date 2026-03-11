@@ -74,14 +74,20 @@ function getRequestBody(req) {
  * @param {Object} data - Dữ liệu trả về
  */
 function sendJSON(res, statusCode, data) {
+  const timestamp = new Date().toISOString();
+  const poweredBy = 'FlowerShop-NodeJS/1.0';
+  console.log(`[${timestamp}] Response: ${statusCode} - ${poweredBy}`);
   res.writeHead(statusCode, {
     'Content-Type': 'application/json; charset=utf-8',
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
+    'X-Powered-By': poweredBy,
+    'X-Timestamp': timestamp,
   });
   res.end(JSON.stringify(data, null, 2));
 }
+
 
 /**
  * Lấy MIME type dựa trên extension
