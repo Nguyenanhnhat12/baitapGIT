@@ -1,0 +1,14 @@
+{
+  "name": "project-nodejs",
+  "version": "1.0.0",
+  "description": "Node.js pure project - Flower Shop with User API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": ["nodejs", "pure", "api", "flower-shop"],
+  "author": "",
+  "license": "ISC"
+}
+

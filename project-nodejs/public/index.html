@@ -1,0 +1,343 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Flower Shop - Node.js Project</title>
+<meta name="keywords" content="flower shop, nodejs, api" />
+<meta name="description" content="Flower Shop - Node.js Pure Project with User API" />
+<link href="templatemo_style.css" rel="stylesheet" type="text/css" />
+<style>
+  /* Style cho phần User Management */
+  #user-management {
+    background: #6b0d3a;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+  }
+  #user-management h2 {
+    background-color: #440522;
+    margin: 0 0 15px 0;
+  }
+  .user-form {
+    margin-bottom: 20px;
+  }
+  .user-form input {
+    padding: 8px;
+    margin: 5px 5px 5px 0;
+    border: 1px solid #f8c7f2;
+    background: #ebbce5;
+    color: #440522;
+    font-size: 12px;
+  }
+  .user-form button, .btn-action {
+    padding: 8px 16px;
+    margin: 5px 5px 5px 0;
+    background: #be457c;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+  }
+  .user-form button:hover, .btn-action:hover {
+    background: #440522;
+  }
+  .btn-delete {
+    background: #c0392b;
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+  .btn-delete:hover {
+    background: #922b21;
+  }
+  #user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  #user-table th {
+    background: #440522;
+    color: #fff;
+    padding: 10px;
+    text-align: left;
+    font-size: 13px;
+  }
+  #user-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #6b0d3a;
+    font-size: 12px;
+  }
+  #user-table tr:hover {
+    background: #922050;
+  }
+  .message {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 3px;
+    font-weight: bold;
+  }
+  .message.success { background: #27ae60; }
+  .message.error { background: #c0392b; }
+</style>
+</head>
+<body>
+<div id="templatemo_container">
+<div id="templatemo_top_panel">
+    <div id="templatemo_language_section">
+      <a href="#"><img src="images/templatemo_flag_01.gif" alt="flag 1" /></a>
+      <a href="#"><img src="images/templatemo_flag_02.gif" alt="flag 2" /></a>
+      <a href="#"><img src="images/templatemo_flag_03.gif" alt="flag 3" /></a>
+      <a href="#"><img src="images/templatemo_flag_04.gif" alt="flag 4" /></a>
+      <a href="#"><img src="images/templatemo_flag_05.gif" alt="flag 5" /></a>
+    </div>
+    <div id="templatemo_shopping_cart">
+      Shopping Cart <span>(<a href="#">3 items</a>)</span>
+    </div>
+</div>
+
+<div id="templatemo_header">
+  <img src="images/templatemo_site_header.jpg" alt="Flower Shop" />
+</div>
+
+<div id="templatemo_banner">
+  <a href="#"><img src="images/templatemo_banner_image.jpg" alt="Flower Shop - Node.js Project" title="Flower Shop - Node.js Project" border="0" /></a>
+</div>
+
+<div id="templatemo_menu_panel">
+  <ul>
+    <li><a href="/" class="current">Home</a></li>
+    <li><a href="#products-section">Products</a></li>
+    <li><a href="#user-management">Users API</a></li>
+    <li><a href="#">About Us</a></li>
+    <li><a href="#">Contact Us</a></li>
+  </ul>
+</div>
+
+<div id="templatemo_content">
+  <div id="templatemo_content_left">
+    <h1>Welcome to Our Flower Shop</h1>
+    <p>This is a <strong>Node.js Pure Project</strong> (không dùng framework). Server sử dụng built-in modules: <code>http</code>, <code>fs</code>, <code>path</code>, <code>url</code>. Template giao diện Flower Shop được tích hợp sẵn.</p>
+    <p>Project bao gồm REST API quản lý Users với đầy đủ các chức năng: xem danh sách, xem chi tiết, thêm mới và xoá user. Dữ liệu được lưu trữ bằng file JSON.</p>
+
+    <div class="cleaner_with_height">&nbsp;</div>
+
+    <h2 id="products-section">New Products</h2>
+    <div class="product_box">
+      <h3>Product One</h3>
+      <img src="images/templatemo_image_01.jpg" alt="image" />
+      <p>Aliquam tristique lacus in sapien. Suspendisse potenti.</p>
+      <div class="price">PRICE:<span>$14.00</span></div>
+      <div class="buynow"><a href="#">Buy Now</a></div><a href="#">Details</a>
+    </div>
+    <div class="product_box">
+      <h3>Product Title</h3>
+      <img src="images/templatemo_image_02.jpg" alt="image" />
+      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing.</p>
+      <div class="price">PRICE:<span>$18.00</span></div>
+      <div class="buynow"><a href="#">Buy Now</a></div><a href="#">Details</a>
+    </div>
+    <div class="product_box">
+      <h3>Product Title</h3>
+      <img src="images/templatemo_image_03.jpg" alt="image" />
+      <p>Suspendisse potenti. Ut sed pede. Nullam vitae tellus.</p>
+      <div class="price">PRICE:<span>$26.00</span></div>
+      <div class="buynow"><a href="#">Buy Now</a></div><a href="#">Details</a>
+    </div>
+
+    <div class="cleaner_with_height">&nbsp;</div>
+
+    <!-- ============ USER MANAGEMENT SECTION ============ -->
+    <div id="user-management">
+      <h2>👥 User Management (API Demo)</h2>
+
+      <div id="msg-container"></div>
+
+      <div class="user-form">
+        <h3>Thêm User Mới</h3>
+        <input type="text" id="input-name" placeholder="Họ tên" />
+        <input type="email" id="input-email" placeholder="Email" />
+        <input type="text" id="input-phone" placeholder="Số điện thoại" />
+        <br />
+        <button onclick="addUser()">➕ Thêm User</button>
+        <button onclick="loadUsers()">🔄 Tải lại danh sách</button>
+      </div>
+
+      <h3>Danh sách Users</h3>
+      <table id="user-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Họ tên</th>
+            <th>Email</th>
+            <th>SĐT</th>
+            <th>Hành động</th>
+          </tr>
+        </thead>
+        <tbody id="user-list">
+          <tr><td colspan="5" style="text-align:center;">Đang tải...</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- ============ END USER MANAGEMENT ============ -->
+
+    <div class="cleaner_with_height">&nbsp;</div>
+  </div>
+
+  <div id="templatemo_content_right">
+    <div class="templatemo_right_section">
+      <h4>Search</h4>
+      <div class="templatemo_right_section_content">
+        <form method="get" action="#">
+          <input name="keyword" type="text" id="keyword"/>
+          <input type="submit" name="submit" class="button" value="Search" />
+        </form>
+      </div>
+    </div>
+
+    <div class="templatemo_right_section">
+      <h4>API Endpoints</h4>
+      <div class="templatemo_right_section_content">
+        <ul>
+          <li><a href="/api/users">GET /api/users</a></li>
+          <li><a href="/api/users/1">GET /api/users/1</a></li>
+          <li><a href="#">POST /api/users</a></li>
+          <li><a href="#">DELETE /api/users/:id</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="templatemo_right_section">
+      <h4>Categories</h4>
+      <div class="templatemo_right_section_content">
+        <ul>
+          <li><a href="#">Artificial and Silk</a></li>
+          <li><a href="#">Dried and Preserved</a></li>
+          <li><a href="#">Floral</a></li>
+          <li><a href="#">Fresh Cut</a></li>
+          <li><a href="#">Gardens</a></li>
+          <li><a href="#">Gifts</a></li>
+          <li><a href="#">Nurseries</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Weddings</a></li>
+          <li><a href="#">Wholesale</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cleaner">&nbsp;</div>
+</div>
+
+<div id="templatemo_footer_panel">
+  <div id="footer_left">
+    <img src="images/mastercard.gif" alt="Master Card" />
+    <img src="images/visa.gif" alt="Visa Card" />
+    <img src="images/paypal.gif" alt="PayPal" />
+    <img src="images/verisignsecured.gif" alt="Verisign Secured" />
+  </div>
+  <div id="footer_right">
+    Copyright &copy; 2024 <a href="#">Flower Shop - Node.js Project</a><br />
+    Template by <a href="http://www.templatemo.com" target="_blank">TemplateMo</a>
+  </div>
+  <div class="cleaner">&nbsp;</div>
+</div>
+</div>
+
+<script>
+// ============ JavaScript - Gọi API ============
+
+const API_URL = '/api/users';
+
+// Hiển thị thông báo
+function showMessage(text, type) {
+  const container = document.getElementById('msg-container');
+  container.innerHTML = '<div class="message ' + type + '">' + text + '</div>';
+  setTimeout(() => { container.innerHTML = ''; }, 3000);
+}
+
+// Tải danh sách users
+function loadUsers() {
+  fetch(API_URL)
+    .then(res => res.json())
+    .then(result => {
+      if (result.success) {
+        renderUsers(result.data);
+      } else {
+        showMessage('Lỗi: ' + result.message, 'error');
+      }
+    })
+    .catch(err => showMessage('Lỗi kết nối server!', 'error'));
+}
+
+// Render danh sách users ra bảng
+function renderUsers(users) {
+  const tbody = document.getElementById('user-list');
+  if (users.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Chưa có user nào</td></tr>';
+    return;
+  }
+  tbody.innerHTML = users.map(user =>
+    '<tr>' +
+      '<td>' + user.id + '</td>' +
+      '<td>' + user.name + '</td>' +
+      '<td>' + user.email + '</td>' +
+      '<td>' + (user.phone || '-') + '</td>' +
+      '<td><button class="btn-action btn-delete" onclick="deleteUser(' + user.id + ')">🗑 Xoá</button></td>' +
+    '</tr>'
+  ).join('');
+}
+
+// Thêm user mới
+function addUser() {
+  const name = document.getElementById('input-name').value.trim();
+  const email = document.getElementById('input-email').value.trim();
+  const phone = document.getElementById('input-phone').value.trim();
+
+  if (!name || !email) {
+    showMessage('Vui lòng nhập đầy đủ Họ tên và Email!', 'error');
+    return;
+  }
+
+  fetch(API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, email, phone })
+  })
+    .then(res => res.json())
+    .then(result => {
+      if (result.success) {
+        showMessage('Thêm user thành công: ' + result.data.name, 'success');
+        document.getElementById('input-name').value = '';
+        document.getElementById('input-email').value = '';
+        document.getElementById('input-phone').value = '';
+        loadUsers();
+      } else {
+        showMessage('Lỗi: ' + result.message, 'error');
+      }
+    })
+    .catch(err => showMessage('Lỗi kết nối server!', 'error'));
+}
+
+// Xoá user
+function deleteUser(id) {
+  if (!confirm('Bạn có chắc muốn xoá user ID=' + id + '?')) return;
+
+  fetch(API_URL + '/' + id, { method: 'DELETE' })
+    .then(res => res.json())
+    .then(result => {
+      if (result.success) {
+        showMessage('Đã xoá user: ' + result.data.name, 'success');
+        loadUsers();
+      } else {
+        showMessage('Lỗi: ' + result.message, 'error');
+      }
+    })
+    .catch(err => showMessage('Lỗi kết nối server!', 'error'));
+}
+
+// Tải users khi trang được load
+window.onload = loadUsers;
+</script>
+</body>
+</html>
+
