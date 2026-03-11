@@ -75,14 +75,17 @@ function getRequestBody(req) {
  */
 function sendJSON(res, statusCode, data) {
   const requestId = 'req-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
-  console.log(`[Response] Status: ${statusCode} | RequestID: ${requestId}`);
+  const timestamp = new Date().toISOString();
+  const poweredBy = 'FlowerShop-NodeJS/1.0';
+  console.log(`[${timestamp}] Status: ${statusCode} | RequestID: ${requestId} | ${poweredBy}`);
   res.writeHead(statusCode, {
     'Content-Type': 'application/json; charset=utf-8',
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
     'X-Request-Id': requestId,
-    'X-Response-Time': new Date().toISOString(),
+    'X-Powered-By': poweredBy,
+    'X-Timestamp': timestamp,
   });
   res.end(JSON.stringify(data, null, 2));
 }

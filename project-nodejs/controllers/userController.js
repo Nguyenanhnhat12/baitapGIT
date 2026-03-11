@@ -137,6 +137,7 @@ async function deleteUser(req, res, id) {
   }
 }
 /**
+<<<<<<< HEAD
  * PUT /api/users/:id
  * Cập nhật thông tin user
  */
@@ -145,6 +146,34 @@ async function updateUser(req, res, id) {
     const body = await getRequestBody(req);
     const users = await readJSONFile(usersFilePath);
     const userIndex = users.findIndex((u) => u.id === parseInt(id));
+=======
+ * GET /api/users/search?q=keyword
+ * Tim kiem user theo ten hoac email
+ */
+async function searchUsers(req, res, query) {
+  try {
+    const users = await readJSONFile(usersFilePath);
+    const keyword = query.toLowerCase();
+    const results = users.filter(
+      (u) =>
+        u.name.toLowerCase().includes(keyword) ||
+        u.email.toLowerCase().includes(keyword)
+    );
+    sendJSON(res, 200, {
+      success: true,
+      message: `Tim thay ${results.length} ket qua cho "${query}"`,
+      count: results.length,
+      data: results,
+    });
+  } catch (err) {
+    sendJSON(res, 500, {
+      success: false,
+      message: 'Loi server khi tim kiem user',
+      error: err.message,
+    });
+  }
+}
+>>>>>>> origin/feature-B
 
     if (userIndex === -1) {
       sendJSON(res, 404, {
@@ -179,6 +208,11 @@ module.exports = {
   getUserById,
   createUser,
   deleteUser,
+<<<<<<< HEAD
   updateUser,
+=======
+  searchUsers,
+>>>>>>> origin/feature-B
 };
+
 
