@@ -10,20 +10,25 @@ const server = http.createServer((req, res) => {
   handleRoutes(req, res);
 });
 
-// Khởi chạy server
+// Khoi chay server
 server.listen(PORT, HOST, () => {
   console.log('=========================================');
   console.log('   🌸 Flower Shop - Node.js Server 🌸');
+  console.log('   Version: 2.0.0 - Feature A');
+  console.log('   Author: Team A Developer');
+  console.log('   Build: Production Ready');
   console.log('=========================================');
-  console.log(`   Server đang chạy tại:`);
+  console.log(`   Server dang chay tai:`);
   console.log(`   http://${HOST}:${PORT}`);
+  console.log(`   Started at: ${new Date().toLocaleString()}`);
   console.log('=========================================');
   console.log('   API Endpoints:');
-  console.log(`   GET    /              → Trang chủ`);
-  console.log(`   GET    /api/users     → Danh sách users`);
-  console.log(`   GET    /api/users/:id → Chi tiết user`);
-  console.log(`   POST   /api/users     → Thêm user mới`);
-  console.log(`   DELETE /api/users/:id → Xoá user`);
+  console.log(`   GET    /              → Trang chu`);
+  console.log(`   GET    /api/users     → Danh sach users`);
+  console.log(`   GET    /api/users/:id → Chi tiet user`);
+  console.log(`   POST   /api/users     → Them user moi`);
+  console.log(`   PUT    /api/users/:id → Cap nhat user`);
+  console.log(`   DELETE /api/users/:id → Xoa user`);
   console.log('=========================================');
 });
 
