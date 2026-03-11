@@ -74,6 +74,13 @@ function handleRoutes(req, res) {
     userController.deleteUser(req, res, id);
     return;
   }
+    // PUT /api/users/:id - Cap nhat user theo ID
+    const updateUserMatch = pathname.match(/^\/api\/users\/(\d+)$/);
+    if (updateUserMatch && method === 'PUT') {
+      const id = updateUserMatch[1];
+      userController.updateUser(req, res, id);
+      return;
+    }
 
   // ============ Static File Routes ============
 
